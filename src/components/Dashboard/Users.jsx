@@ -4,12 +4,12 @@ import { MDBBadge, MDBBtn, MDBTable, MDBTableHead, MDBTableBody } from 'mdb-reac
 export default function App() {
   return (
     <div className="table-responsive">
-    <MDBTable align='middle' className='mb-12 lg-12'>
+    <MDBTable align='middle' className='mb-8 lg-8'>
       <MDBTableHead>
         <tr>
           <th scope='col'>Name</th>
-          <th scope='col'>Title</th>
-          <th scope='col'>Status</th>
+          <th scope='col'>Address</th>
+
           <th scope='col'>Packages</th>
           <th scope='col'>Actions</th>
         </tr>
@@ -31,19 +31,16 @@ export default function App() {
             </div>
           </td>
           <td>
-            <p className='fw-normal mb-1'>Software engineer</p>
-            <p className='text-muted mb-0'>IT department</p>
+            <p className='fw-normal mb-1'>KPK</p>
+            <p className='text-muted mb-0'>abc</p>
           </td>
-          <td>
-            <MDBBadge color='success' pill>
-              Active
-            </MDBBadge>
-          </td>
+     
           <td>Basic</td>
           <td>
-            <MDBBtn color='link' rounded size='sm'>
-              Details
+            <MDBBtn color='danger' rounded size='sm'>
+              Delete
             </MDBBtn>
+            
           </td>
         </tr>
         <tr>
@@ -62,18 +59,14 @@ export default function App() {
             </div>
           </td>
           <td>
-            <p className='fw-normal mb-1'>Consultant</p>
-            <p className='text-muted mb-0'>Finance</p>
+            <p className='fw-normal mb-1'>Sindh</p>
+            <p className='text-muted mb-0'>dfg</p>
           </td>
-          <td>
-            <MDBBadge color='primary' pill>
-              Onboarding
-            </MDBBadge>
-          </td>
+
           <td>Basic</td>
           <td>
-            <MDBBtn color='link' rounded size='sm'>
-              Details
+            <MDBBtn color='danger' rounded size='sm'>
+              Delete
             </MDBBtn>
           </td>
         </tr>
@@ -93,18 +86,14 @@ export default function App() {
             </div>
           </td>
           <td>
-            <p className='fw-normal mb-1'>Designer</p>
-            <p className='text-muted mb-0'>UI/UX</p>
+            <p className='fw-normal mb-1'>Punjab</p>
+            <p className='text-muted mb-0'>Lahore</p>
           </td>
-          <td>
-            <MDBBadge color='warning' pill>
-              Awaiting
-            </MDBBadge>
-          </td>
+
           <td>Premium</td>
           <td>
-            <MDBBtn color='link' rounded size='sm'>
-            Details
+            <MDBBtn color='danger' rounded size='sm'>
+            Delete
             </MDBBtn>
           </td>
         </tr>
