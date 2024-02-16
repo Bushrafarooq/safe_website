@@ -40,10 +40,10 @@ export default function App() {
           </MDBCardBody>
           <MDBCardFooter background='light' border='0' className='p-2 d-flex justify-content-around'>
             <MDBBtn color='link' rippleColor='primary' className='text-reset m-0'>
-              Reply <MDBIcon fas icon='envelope' />
+              Reply 
             </MDBBtn>
             <MDBBtn color='link' rippleColor='danger' className='text-reset m-0'>
-              Delete <MDBIcon icon='bitbucket' />
+              Delete 
             </MDBBtn>
           </MDBCardFooter>
         </MDBCard>
@@ -75,10 +75,10 @@ export default function App() {
           </MDBCardBody>
           <MDBCardFooter background='light' border='0' className='p-2 d-flex justify-content-around'>
             <MDBBtn color='link' rippleColor='primary' className='text-reset m-0'>
-              Reply <MDBIcon fas icon='envelope' />
+              Reply 
             </MDBBtn>
             <MDBBtn color='link' rippleColor='primary' className='text-reset m-0'>
-              Delete <MDBIcon fas icon='phone' />
+              Delete 
             </MDBBtn>
           </MDBCardFooter>
         </MDBCard>

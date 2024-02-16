@@ -1,11 +1,11 @@
 import React from 'react'
-import 'react-chat-elements/dist/main.css'
+
 import SideNav from './components/Dashboard/SideNav';
 import DashboardPills from './components/Dashboard/DasboardPills';
 import DashboardFilters from './components/Dashboard/DashboardFilters';
 import { MDBCol, MDBRow } from 'mdb-react-ui-kit';
 import Overview from './components/Dashboard/Overview';
-import { ChatList } from 'react-chat-elements'
+
 import Users from './components/Dashboard/Users';
 import ChatListWithButtons from './components/Dashboard/ChatListWithButtons';
 import image from './components/Dashboard/images/Team1.jpg'
