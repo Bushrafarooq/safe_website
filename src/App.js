@@ -12,6 +12,7 @@ import AboutPage from "./AboutPage";
 import Dashboard from "./Dashboard";
 import ProfilePage from "./ProfilePage";
 import InformationPage from "./InformationPage";
+import UDashboard from "./uDashboard";
 import './App.css';
 import Users from "./Users";
 import Information from "./components/Information/information";
@@ -42,6 +43,7 @@ function App() {
         <Route path="/users" element={<Users />} />
         <Route path="/dashboard/:uid" element={<Dashboard />} />
         <Route path="/information/:id/:uid" element={<InformationPage/>} />
+        <Route path="/udashboard" element={<UDashboard/>} />
         <Route path="/dashboard/:uid/profile/:id" element={<ProfilePage/>} />
     </Routes>
     </div>

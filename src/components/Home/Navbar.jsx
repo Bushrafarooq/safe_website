@@ -70,7 +70,13 @@ export default function Navbar() {
                 </MDBBtn>
                 </Link>
               </MDBNavbarItem>
-
+              <MDBNavbarItem>
+              <Link to="/udashboard" role={"button"}>
+              <MDBBtn rounded className="mx-2 nav-signin">
+                  User Login
+                </MDBBtn>
+                </Link>
+              </MDBNavbarItem>
               
             </MDBNavbarNav>
           </MDBCollapse>
