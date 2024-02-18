@@ -9,6 +9,11 @@ const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 
 export default function App() {
+  const navigate = useNavigate();
+
+  const navigateToPage = () => {
+    navigate('/fakeshutdown'); // Navigates to '/pagefakeshutdown'
+  };
     const defaultProps = {
         center: {
           lat: 10.99835602,
@@ -31,8 +36,13 @@ export default function App() {
      
       <MDBBtn className="w-100 custom_border mb-3"style={{backgroundColor:' rgb(96,150,180)'}}>Alarm</MDBBtn>
       
-      <MDBBtn className="w-100 custom_border mb-3"style={{backgroundColor:' rgb(96,150,180)'}}>Fake Shutdown</MDBBtn>
-      
+      <MDBBtn
+            className="w-100 custom_border mb-3"
+            style={{ backgroundColor: ' rgb(96,150,180)' }}
+            onClick={navigateToPage} // Add onClick handler to call navigateToFakeShutdown function
+          >
+            Fake Shutdown
+          </MDBBtn>
     
     </MDBCol >
     <MDBCol className="col-10 col-lg-6 d-flex flex-column align-items-center">
@@ -41,7 +51,7 @@ export default function App() {
         
         <div  style={{background:'rgb(96,150,180)'}}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: "" }}
+        bootstrapURLKeys={{ key: "AIzaSyAMwp8Q5zmK2Kycf5hO-Jd7vnuee-AifFg" }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
       

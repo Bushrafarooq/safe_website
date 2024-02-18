@@ -19,6 +19,8 @@ import Information from "./components/Information/information";
 import Media from "./components/Information/media";
 import Privatephotos from "./components/Information/privatephotos";
 import Publicphotos from "./components/Information/publicphotos";
+import FakeShutdownScreen from './fakeshutdown'; 
+
 
 function App() {
   return (
@@ -45,6 +47,8 @@ function App() {
         <Route path="/information/:id/:uid" element={<InformationPage/>} />
         <Route path="/udashboard" element={<UDashboard/>} />
         <Route path="/dashboard/:uid/profile/:id" element={<ProfilePage/>} />
+        <Route path="/fakeshutdown" element={<FakeShutdownScreen />} />
+       
     </Routes>
     </div>
   );
