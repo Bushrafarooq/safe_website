@@ -22,7 +22,7 @@ const About1 = () => {
       <br></br>
       <MDBRow className="row">
         <MDBCol lg='12'>
-          <h1 className="ssf-head-text">Our Leadership Team </h1>
+          <h1 className="ssf-head-text">Our  Team </h1>
         </MDBCol>
         <MDBCol lg='12'>
           <MDBRow center>
@@ -38,7 +38,7 @@ const About1 = () => {
                   <MDBCardText>
                   A fervent Computer Science student, working passionately to elevate cybersecurity awareness in Pakistan. With a relentless commitment to fostering digital safety, this enthusiast is on a mission to empower individuals and organizations with the knowledge and tools needed to navigate the ever-evolving landscape of cybersecurity.
                   </MDBCardText>
-                  <MDBBtn href="#">Follow</MDBBtn>
+                  <MDBBtn href="https://www.linkedin.com/in/bushra-farooq-58a31a224">Follow</MDBBtn>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
@@ -55,10 +55,28 @@ const About1 = () => {
                   <MDBCardText>
                   A fervent Computer Science student, working passionately to elevate cybersecurity awareness in Pakistan. With a relentless commitment to fostering digital safety, this enthusiast is on a mission to empower individuals and organizations with the knowledge and tools needed to navigate the ever-evolving landscape of cybersecurity.
                   </MDBCardText>
+                  <MDBBtn href="https://www.linkedin.com/in/sadia-ghani-2020cs87">Follow</MDBBtn>
+                </MDBCardBody>
+              </MDBCard>
+            </MDBCol>
+
+            <MDBCol className="col-12 col-lg-4">
+              <MDBCard className="card-size">
+                <MDBCardImage
+                  src={team1}
+                  position="top"
+                  alt="..."
+                />
+                <MDBCardBody>
+                  <MDBCardTitle>Esha Tur Razia</MDBCardTitle>
+                  <MDBCardText>
+                  A fervent Computer Science student, working passionately to elevate cybersecurity awareness in Pakistan. With a relentless commitment to fostering digital safety, this enthusiast is on a mission to empower individuals and organizations with the knowledge and tools needed to navigate the ever-evolving landscape of cybersecurity.
+                  </MDBCardText>
                   <MDBBtn href="#">Follow</MDBBtn>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
+
 
             <MDBCol className="col-12 col-lg-4">
               <MDBCard className="card-size">
@@ -73,7 +91,7 @@ const About1 = () => {
                   <MDBCardText>
                   A fervent Computer Science student, working passionately to elevate cybersecurity awareness in Pakistan. With a relentless commitment to fostering digital safety, this enthusiast is on a mission to empower individuals and organizations with the knowledge and tools needed to navigate the ever-evolving landscape of cybersecurity.
                   </MDBCardText>
-                  <MDBBtn href="#">Follow</MDBBtn>
+                  <MDBBtn href="https://www.linkedin.com/in/ayesha-amjad-795922261/">Follow</MDBBtn>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>

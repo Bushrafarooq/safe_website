@@ -8,7 +8,7 @@ const FakeShutdownScreen = () => { // Renamed from App to FakeShutdownScreen
   const handleShutdown = async () => {
     try {
       console.log("Sending shutdown command to Node Server...");
-      const response = await axios.post('http://localhost:3000/fake-shutdown');
+      const response = await axios.post('http://localhost:3000/api/fake-shutdown');
       console.log("Connected to Node Server");
       console.log("Response from server:", response);
       setMessage(response.data);

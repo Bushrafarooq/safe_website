@@ -7,7 +7,7 @@ const port = 3000;
 app.use(cors());
 
 // Endpoint to receive fake shutdown request
-app.post('/fake-shutdown', (req, res) => {
+app.post('/api/fake-shutdown', (req, res) => {
   // Perform fake shutdown action here
   
   // Simulate a delay of 5 seconds before sending the response

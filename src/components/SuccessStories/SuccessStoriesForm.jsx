@@ -96,8 +96,8 @@ const SuccessStoriesForm = () => {
           checkFlags[0]=false;
         }
         else {
-          document.getElementById('lname_pane').style.display = 'block';
-          document.getElementById('lname_pane').innerHTML = "Partner's Name is Invalid";
+          // document.getElementById('lname_pane').style.display = 'block';
+          // document.getElementById('lname_pane').innerHTML = "Email is Invalid";
           checkFlags[1]=false;
         }
         flag = false;
@@ -110,7 +110,7 @@ const SuccessStoriesForm = () => {
           checkFlags[0]=true;
         }
         else {
-          document.getElementById('lname_pane').style.display = 'none';
+          // document.getElementById('lname_pane').style.display = 'none';
           checkFlags[1]=true;
         }
         flag = true;
@@ -120,6 +120,33 @@ const SuccessStoriesForm = () => {
     
     return flag;
   }
+  const validateEmail = (e) => {
+    setFormValue({ ...formValue, [e.target.name]: e.target.value });
+    let flag = false;
+    let email = e.target.value;
+  
+    // Regular expression for email validation
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  
+    // Check if email matches the regex pattern
+    if (!emailRegex.test(email)) {
+      if (e.target.name === 'email') {
+        document.getElementById('email_pane').style.display = 'block';
+        document.getElementById('email_pane').innerHTML = "Email is Invalid";
+        checkFlags[2] = false;
+      }
+      flag = false;
+    } else {
+      if (e.target.name === 'email') {
+        document.getElementById('email_pane').style.display = 'none';
+        checkFlags[2] = true;
+      }
+      flag = true;
+    }
+  
+    return flag;
+  }
+  
 
   function phonenumber(val) {
   
@@ -193,14 +220,14 @@ const SuccessStoriesForm = () => {
                 <MDBInput
                   value={formValue.lname}
                   name='lname'
-                  onChange={validateName}
+                  onChange={validateEmail}
                   id='email'
                   required
                   label="Email"
                   className='my-0'
                 />
               </MDBValidationItem>
-              <p id='lname_pane' className='text-danger mt-0' style={{ display: "none" }}></p>
+              <p id='email_pane' className='text-danger mt-0' style={{ display: "none" }}></p>
               <MDBValidationItem feedback="" invalid className='col-md-12'>
                 {/* <MDBInputGroup textBefore='@'>
                   <input

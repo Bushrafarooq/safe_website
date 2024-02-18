@@ -121,14 +121,14 @@ body {
   
   .column {
     float: left;
-    width: 33.3%;
+    width: 25.0%;
     margin-bottom: 16px;
     padding: 0 8px;
   }
 
   .fudi{
     margin: 2rem auto;
-    width: auto;
+    width: 15rem;
   }
   .about-section {
     padding: 50px;
@@ -172,7 +172,9 @@ body {
       width: 100%;
       display: block;
     }
+    
   }
+
   .team{
     text-align: center;
   }
@@ -182,7 +184,7 @@ body {
 
 .card-size{
     margin: 2rem auto;
-    width: 22rem;
+    width: 15rem;
 }
 .ssf-head-text{
   color: rgb(44, 141, 148);
@@ -195,3 +197,7 @@ body {
   width: 100%;
   height: 50%;
 }
+@media (min-width: 992px){
+.col-lg-4 {
+    flex: 0 0 auto;
+    width: 25%;}}
