@@ -1,6 +1,10 @@
 const express = require('express');
+const cors = require('cors'); // Import the CORS middleware
 const app = express();
 const port = 3000;
+
+// Enable CORS middleware
+app.use(cors());
 
 // Endpoint to receive fake shutdown request
 app.post('/fake-shutdown', (req, res) => {
@@ -17,7 +21,6 @@ app.post('/fake-shutdown', (req, res) => {
     res.send(JSON.stringify({ message: 'Fake shutdown initiated successfully.Server' }));
   }, delay);
 
-  
   req.on('close', () => {
     clearTimeout(timeoutId);
     console.log('Fake shutdown request cancelled.Server');

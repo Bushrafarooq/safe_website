@@ -1,6 +1,7 @@
 import { MDBCol, MDBRow, MDBTypography } from 'mdb-react-ui-kit';
 import React from 'react';
 import ContactForm from './components/ContactUs/ContactForm';
+import Cf from './components/ContactUs/Cf';
 import Navbar from './components/Home/Navbar';
 import Footer from './components/Home/Footer';
 
@@ -15,7 +16,7 @@ function ContactUsPage() {
             <MDBCol sm='0' md='4'>
             </MDBCol>
             <MDBCol sm='12' md='4'>
-                <ContactForm className='justify-content-center'/>
+                <Cf className='justify-content-center'/>
             </MDBCol>
             <MDBCol sm='0' md='4'>
             </MDBCol>

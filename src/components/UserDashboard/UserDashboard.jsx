@@ -1,18 +1,17 @@
 import React from 'react';
+import MyComponent from './MyComponent';
 import './style.css'
 import { MDBBtn, MDBBtnGroup, MDBCol , MDBRow } from 'mdb-react-ui-kit';
 import GoogleMapReact from 'google-map-react';
+import { useNavigate } from 'react-router-dom';
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
-
-
-
 
 export default function App() {
   const navigate = useNavigate();
 
   const navigateToPage = () => {
-    navigate('/fakeshutdown'); // Navigates to '/pagefakeshutdown'
+    navigate('/fakeshutdown'); // Navigates to '/page'
   };
     const defaultProps = {
         center: {
@@ -47,21 +46,10 @@ export default function App() {
     </MDBCol >
     <MDBCol className="col-10 col-lg-6 d-flex flex-column align-items-center">
     <h3>Map</h3>
-    <div className='flex-column d-flex custom_border align-items-center' style={{   background:'rgb(96,150,180)', height: '70vh', width: '100%',marginRight: '20px'  }}>
+    <div className='flex-column d-flex custom_border align-items-center' style={{    height: '70vh', width: '100%',marginRight: '20px'  }}>
         
         <div  style={{background:'rgb(96,150,180)'}}>
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: "AIzaSyAMwp8Q5zmK2Kycf5hO-Jd7vnuee-AifFg" }}
-        defaultCenter={defaultProps.center}
-        defaultZoom={defaultProps.zoom}
-      
-      >
-        <AnyReactComponent
-          lat={59.955413}
-          lng={30.337844}
-          text="My Marker"
-        />
-      </GoogleMapReact>
+    <MyComponent/>
       </div>
     </div>
     </MDBCol>
