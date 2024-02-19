@@ -72,7 +72,7 @@ const About1 = () => {
                   <MDBCardText>
                   A fervent Computer Science student, working passionately to elevate cybersecurity awareness in Pakistan. With a relentless commitment to fostering digital safety, this enthusiast is on a mission to empower individuals and organizations with the knowledge and tools needed to navigate the ever-evolving landscape of cybersecurity.
                   </MDBCardText>
-                  <MDBBtn href="#">Follow</MDBBtn>
+                  <MDBBtn href="https://www.linkedin.com/in/esha-tur-razia-574102225">Follow</MDBBtn>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
