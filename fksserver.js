@@ -5,6 +5,17 @@ const port = 3000;
 
 // Enable CORS middleware
 app.use(cors());
+app.get('/api/fake-shutdown', (req, res) => {
+  // Here you can return the current status of the fake shutdown toggle
+  // For demonstration purposes, let's assume it's always off
+  const fakeShutdownStatus = { isToggled: false };
+
+  // Print "connection established with Flutter" to the console
+  console.log('Connection established with Flutter ');
+   
+  // Send the fake shutdown status as the response
+  res.status(200).json(fakeShutdownStatus);
+});
 
 // Endpoint to receive fake shutdown request
 app.post('/api/fake-shutdown', (req, res) => {
