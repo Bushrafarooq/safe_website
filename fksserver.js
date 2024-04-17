@@ -17,6 +17,7 @@ app.get('/api/fake-shutdown', (req, res) => {
   res.status(200).json(fakeShutdownStatus);
 });
 
+
 // Endpoint to receive fake shutdown request
 app.post('/api/fake-shutdown', (req, res) => {
   // Perform fake shutdown action here
