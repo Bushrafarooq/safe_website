@@ -1,10 +1,11 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const bodyParser = require('body-parser');
 const sql = require('mssql');
 app.use(cors());
 app.use(express.json()); // Add this line to parse JSON bodies
-
+app.use(bodyParser.json({ limit: '50mb' }));
 // Database configuration
 const config = {
   user: 'SafeAdmin',
@@ -51,6 +52,26 @@ sql.connect(config)
       }
     });
 
+    // Define a route to upload image data to the database
+
+    app.post('/upload-intruder', async (req, res) => {
+      try {
+        const imageData = req.body.imageData; // Assuming you're sending image data in the request body
+
+        // Connect to the SQL Server database
+        const pool = await sql.connect(config);
+
+        // Insert the image data into the Intruder table using a parameterized query
+        const request = pool.request();
+        await request.input('imageData', sql.VarChar(sql.MAX), imageData).query('INSERT INTO Intruder (ImageData) VALUES (@imageData)');
+
+        res.status(200).send('Image uploaded successfully');
+      } catch (error) {
+        console.error('Error uploading image:', error);
+        res.status(500).send('Internal server error');
+      }
+    });
+
     // Define a route to retrieve the latest entry from the locations table
     app.get('/latest-location', async (req, res) => {
       try {
@@ -69,6 +90,7 @@ sql.connect(config)
       console.log(`Server running on port ${port}`);
     });
   })
+
   .catch(err => {
     console.error('Error connecting to database:', err);
   });
