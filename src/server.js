@@ -56,6 +56,52 @@ sql.connect(config)
       }
     });
 
+    app.post('/postData', async (req, res) => {
+      try {
+        // Connect to the database
+        const pool = await sql.connect(config);
+        
+        const { full_name, phone_number, address, email, password } = req.body;
+        console.log('Recevied data');
+        console.log(full_name, phone_number, address, email, password);
+        const request = pool.request();
+        const query = `INSERT INTO users (full_name, phone_number, address, email, password) VALUES ('${full_name}', '${phone_number}', '${address}', '${email}', '${password}')`;
+        await request.query(query);
+        //console.log(full_name, phone_number, address, email, password);
+        // Respond with success message
+        res.status(200).send('Data posted successfully');
+      } catch (error) {
+        // Handle errors
+        console.error('Error posting data:', error.message);
+        res.status(500).send('Error posting data');
+      }
+    });
+
+    app.post('/login', async (req, res) => {
+      const { email, password } = req.body;
+    
+      try {
+        // Connect to the database
+        await sql.connect(config);
+    
+        // Query the database to check user credentials
+        const result = await sql.query`SELECT * FROM users WHERE email = ${email} AND password = ${password}`;
+        const user = result.recordset[0];
+    
+        if (user) {
+          // User authentication successful
+          res.status(200).json({ message: 'Login successful', user });
+        } else {
+          // User not found or invalid credentials
+          res.status(401).json({ message: 'Invalid credentials' });
+        }
+      } catch (error) {
+        console.error('Error during login:', error.message);
+        res.status(500).json({ message: 'Internal server error' });
+      }
+    });
+
+
     // Define a route to receive location data from the Android app
     app.post('/location', async (req, res) => {
       try {

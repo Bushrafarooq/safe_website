@@ -16,7 +16,7 @@ function Dashboard() {
     <div style={{ backgroundColor:'rgb(238, 233, 218)', margin:'5px'}}>
         <SideNav/>
         <br></br>
-        <h1 className='text-center' style={{color:'rgb(96,150,180)', margin:'1rem' , justifyContent:'center'}}>Dashboard</h1>
+        <h1 className='text-center' style={{color:'rgb(96,150,180)', margin:'1rem' , justifyContent:'center'}}>Admin Dashboard</h1>
         <hr></hr>
 
         <h1>User Details</h1>
