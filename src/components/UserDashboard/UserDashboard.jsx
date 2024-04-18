@@ -1,5 +1,6 @@
 import React from 'react';
 import MyComponent from './MyComponent';
+import ImageGallery from './ImageGallery';
 import './style.css'
 import { MDBBtn, MDBBtnGroup, MDBCol , MDBRow } from 'mdb-react-ui-kit';
 import GoogleMapReact from 'google-map-react';
@@ -28,10 +29,7 @@ export default function App() {
       <MDBBtn className="w-100 custom_border mb-3" style={{backgroundColor:' rgb(96,150,180)'}}>Track</MDBBtn>
    
       <MDBBtn className="w-100 custom_border  mb-3" style={{backgroundColor:' rgb(96,150,180)'}}>Intruder</MDBBtn>
-      
-      <MDBBtn className="w-100 custom_border mb-3"style={{backgroundColor:' rgb(96,150,180)'}}>Remote Wipe</MDBBtn>
-     
-      <MDBBtn className="w-100 custom_border mb-3"style={{backgroundColor:' rgb(96,150,180)'}}>Data Access</MDBBtn>
+
      
       <MDBBtn className="w-100 custom_border mb-3"style={{backgroundColor:' rgb(96,150,180)'}}>Alarm</MDBBtn>
       
@@ -64,6 +62,9 @@ export default function App() {
     <p>Time: 12:00 PM</p>
 </div>
 
+    </MDBCol>
+    <MDBCol>
+      <ImageGallery/>
     </MDBCol>
     </MDBRow>
     </div>
