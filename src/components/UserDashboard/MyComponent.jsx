@@ -55,7 +55,7 @@ function MyComponent() {
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={1000}
+        zoom={1}
         onLoad={onLoad}
         onUnmount={onUnmount}
       >

@@ -1,11 +1,12 @@
 const express = require('express');
 const cors = require('cors');
-const app = express();
 const bodyParser = require('body-parser');
+const app = express();
 const sql = require('mssql');
 app.use(cors());
 app.use(express.json()); // Add this line to parse JSON bodies
 app.use(bodyParser.json({ limit: '50mb' }));
+
 // Database configuration
 const config = {
   user: 'SafeAdmin',
@@ -22,6 +23,26 @@ const config = {
 sql.connect(config)
   .then(pool => {
     console.log('Connected to database');
+
+    // Define a route to fetch all images from the Intruder table
+    app.get('/getImages', async (req, res) => {
+      try {
+        // Connect to the SQL Server database
+        const pool = await sql.connect(config);
+
+        // Query to select all images from the Intruder table
+        const result = await pool.request().query('SELECT imageData FROM Intruder');
+
+        // Extract the image data from the query result
+        const images = result.recordset.map(record => record.imageData);
+
+        // Send the array of image data as the response
+        res.json(images);
+      } catch (error) {
+        console.error('Error fetching intruder images:', error);
+        res.status(500).send('Internal server error');
+      }
+    });
 
     // Define a route to retrieve data from the database
     app.get('/data', async (req, res) => {
@@ -53,7 +74,6 @@ sql.connect(config)
     });
 
     // Define a route to upload image data to the database
-
     app.post('/upload-intruder', async (req, res) => {
       try {
         const imageData = req.body.imageData; // Assuming you're sending image data in the request body
@@ -90,7 +110,6 @@ sql.connect(config)
       console.log(`Server running on port ${port}`);
     });
   })
-
   .catch(err => {
     console.error('Error connecting to database:', err);
   });
