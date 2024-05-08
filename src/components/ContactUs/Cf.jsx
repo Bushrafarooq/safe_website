@@ -119,7 +119,7 @@ export default function ContactForm() {
       <MDBValidationItem feedback='' className='col-md-12'>
         <MDBInput
           value={inputs.Name}
-          name='Name'
+          name='HEllo'
           onChange={validateName}
           id='name'
           required

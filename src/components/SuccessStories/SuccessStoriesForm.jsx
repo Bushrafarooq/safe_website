@@ -17,7 +17,6 @@ import {
 } from 'mdb-react-ui-kit';
 import Navbar from '../Home/Navbar';
 import Footer from '../Home/Footer';
-
 import './SSF.css';
 
 const checkFlags = Array.apply(null,Array(5)).map(Boolean.prototype.valueOf,false);
@@ -27,18 +26,18 @@ const checkFlags = Array.apply(null,Array(5)).map(Boolean.prototype.valueOf,fals
 const SuccessStoriesForm = () => {
   const [value, setValue] = useState()
   const [formValue, setFormValue] = useState({
-    fname: '',
-    lname: '',
+    name: '',
     email: '',
-    phn: '',
-    story: '',
+    phone: '',
+    message: '',
     terms: false,
     
   });
+ 
 
   useEffect(() => {
     if(phonenumber(value)){
-      setFormValue({...formValue,phn:value});
+      setFormValue({...formValue,phone:value});
     }
   }, [value]);
 
@@ -54,7 +53,7 @@ const SuccessStoriesForm = () => {
       setFormValue({ ...formValue, [e.target.name]: false });
     }
   };
-
+ 
   const validateImage = (e) => {
     console.log(e.target.required);
     if (e.target.required) {
@@ -83,6 +82,40 @@ const SuccessStoriesForm = () => {
     }
   }
 
+  const onSubmitf = async (e) => {
+    e.preventDefault();
+    console.log(formValue)
+    // Check if all fields are valid
+    if ( checkFlags[2]) {
+  
+      try {
+        // Make POST request to contact-us endpoint
+        const response = await fetch('http://localhost:5000/contact-us', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formValue),
+        });
+
+        if (response.ok) {
+          // Success
+          alert('Form submitted successfully!');
+          // Redirect to another page
+          
+        } else {
+          // Error
+          alert('Failed to submit form. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        alert('An error occurred while submitting the form. Please try again later.');
+      }
+    } else {
+      // Form validation failed
+      alert('Please fill out all required fields correctly.');
+    }
+  };
 
   const validateName = (e) => {
     setFormValue({ ...formValue, [e.target.name]: e.target.value });
@@ -133,13 +166,13 @@ const SuccessStoriesForm = () => {
       if (e.target.name === 'email') {
         document.getElementById('email_pane').style.display = 'block';
         document.getElementById('email_pane').innerHTML = "Email is Invalid";
-        checkFlags[2] = false;
+        checkFlags[4] = false;
       }
       flag = false;
     } else {
       if (e.target.name === 'email') {
         document.getElementById('email_pane').style.display = 'none';
-        checkFlags[2] = true;
+        checkFlags[4] = true;
       }
       flag = true;
     }
@@ -170,7 +203,7 @@ const SuccessStoriesForm = () => {
 
   const onSubmit = (e) => {
 
-    if (formValue.terms && checkFlags[0] && checkFlags[4]) {
+    if ( checkFlags[0] && checkFlags[4]) {
       e.preventDefault();
       console.log(formValue);
       return false;
@@ -206,8 +239,8 @@ const SuccessStoriesForm = () => {
 
               <MDBValidationItem feedback='' className='col-md-12'>
                 <MDBInput
-                  value={formValue.fname}
-                  name='fname'
+                  value={formValue.name}
+                  name='name'
                   onChange={validateName}
                   id='validationCustom01'
                   required
@@ -218,8 +251,8 @@ const SuccessStoriesForm = () => {
               <p id='name_pane' className='text-danger mt-0' style={{ display: "none" }}></p>
               <MDBValidationItem feedback='' className='col-md-12'>
                 <MDBInput
-                  value={formValue.lname}
-                  name='lname'
+                  value={formValue.email}
+                  name='email'
                   onChange={validateEmail}
                   id='email'
                   required
@@ -244,7 +277,7 @@ const SuccessStoriesForm = () => {
               label='Phone Number'
               international
               countryCallingCodeEditable={false}
-              name='phn'
+              name='phone'
                  placeholder="Enter phone number"
                  value={value}
                  onChange={setValue}
@@ -258,14 +291,14 @@ const SuccessStoriesForm = () => {
               <p id='phnNo' className='text-danger mt-0' style={{ display: "none" }}></p>
            
               <div>
-                <MDBTextArea value={formValue.story} name='story' onChange={validateMsg} label='Your Message' id='textAreaExample' rows={5} required />
+                <MDBTextArea value={formValue.message} name='message' onChange={validateMsg} label='Your Message' id='textAreaExample' rows={5} required />
               </div>
               <p id='sstory' className='mt-0' style={{ display: "none" }}></p>
               {/* <MDBValidationItem feedback="You Must Agree" invalid>
                 <MDBCheckbox label='Agree to terms and conditions' name='terms' onChange={onChange1} id='invalidCheck' required />
               </MDBValidationItem> */}
               <div className='col-12'>
-                <MDBBtn type='submit' onClick={onSubmit}>Submit form</MDBBtn>
+                <MDBBtn type='submit' onClick={onSubmitf}>Submit form</MDBBtn>
               </div>
             </MDBValidation>
           </MDBCol>

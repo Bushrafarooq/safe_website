@@ -23,21 +23,22 @@ export default function ContactForm() {
 
   const sendEmail = (e) => {
 
-    e.preventDefault();
-    send(
-      'service_1ux85mk',
-      'template_95domwm',
-      inputs,
-      'FgC4BNxZ_WUTzSBW0'
-    ).then((response) => {
-      console.log('Message Sent Successfuly', response.status, response.text)
-
-      alert('Your Email Sent to the Authorities Thanks For The Email');
-      navigate('/', { replace: true });
+    fetch('/contact-us', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(inputs),
     })
-      .catch((err) => {
-        console.log('Failed', err)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Data posted successfully to ContactUs table:', data);
+        // Optionally, perform any actions based on the response
       })
+      .catch((error) => {
+        console.error('Error posting data to ContactUs table:', error);
+        // Handle errors
+      });
 
 
 

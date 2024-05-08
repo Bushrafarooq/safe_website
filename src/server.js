@@ -149,6 +149,83 @@ sql.connect(config)
         res.status(500).send('Error retrieving latest location');
       }
     });
+    app.post('/contact-us', async (req, res) => {
+      try {
+        // Destructure the request body to get the necessary data
+        const { name, email, phone,message } = req.body;
+        const currentDate = new Date();
+        // Connect to the SQL Server database
+        const pool = await sql.connect(config);
+    
+        // Insert the data into the ContactUs table using a parameterized query
+        const request = pool.request();
+        await request
+          .input('name', sql.NVarChar(255), name)
+          .input('email', sql.NVarChar(255), email)
+          .input('phone', sql.NVarChar(sql.MAX), phone)
+          .input('message', sql.NVarChar(sql.MAX), message)
+         
+          .query(`INSERT INTO ContactUs (name, email, phone, message) 
+                  VALUES (@name, @email, @phone, @message)`);
+        
+        // Send a success response
+        res.status(200).send('Data inserted successfully into ContactUs table');
+      } catch (error) {
+        // Handle errors
+        console.error('Error inserting data into ContactUs table:', error);
+        res.status(500).send('Internal server error');
+      }
+    });
+// Define a route to fetch all data from the ContactUs table, showing only the latest value for each unique email address
+app.get('/get-contact-us', async (req, res) => {
+  try {
+    // Connect to the SQL Server database
+    const pool = await sql.connect(config);
+
+    // SQL query to select all data from the ContactUs table, showing only the latest value for each unique email address
+    const query = `
+      SELECT *
+      FROM (
+        SELECT *, ROW_NUMBER() OVER (PARTITION BY email ORDER BY submission_date DESC) AS rn
+        FROM ContactUs
+      ) AS ranked
+      WHERE rn = 1;
+    `;
+    
+    // Execute the query
+    const result = await pool.request().query(query);
+
+    // Send the query result as the response
+    res.json(result.recordset);
+  } catch (error) {
+    // Handle errors
+    console.error('Error fetching data from ContactUs table:', error);
+    res.status(500).send('Internal server error');
+  }
+});
+// Define a route to handle POST requests for deleting tuples from the ContactUs table based on email
+app.post('/delete-contact', async (req, res) => {
+  try {
+    // Extract the email from the request body
+    const { email } = req.body;
+
+    // Connect to the SQL Server database
+    const pool = await sql.connect(config);
+
+    // Execute a DELETE query to delete tuples with the specified email
+    const request = pool.request();
+    await request
+      .input('email', sql.NVarChar(255), email)
+      .query('DELETE FROM ContactUs WHERE email = @email');
+    
+    // Send a success response
+    res.status(200).send(`Tuples with email ${email} deleted successfully from ContactUs table`);
+  } catch (error) {
+    // Handle errors
+    console.error('Error deleting tuples from ContactUs table:', error);
+    res.status(500).send('Internal server error');
+  }
+});
 
     // Start the server
     const port = process.env.PORT || 5000;
