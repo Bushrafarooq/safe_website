@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import logoImage from "./img/logo.png";
 import "./Navbar.css";
+import logoImage from "./img/logo.png";
 
 import {
+  MDBBtn,
+  MDBCollapse,
   MDBContainer,
+  MDBIcon,
   MDBNavbar,
   MDBNavbarBrand,
-  MDBNavbarToggler,
-  MDBIcon,
-  MDBNavbarNav,
   MDBNavbarItem,
-  MDBCollapse,
-  MDBBtn,
+  MDBNavbarNav,
+  MDBNavbarToggler,
 } from "mdb-react-ui-kit";
 
 export default function Navbar() {
@@ -40,11 +40,6 @@ export default function Navbar() {
 
           <MDBCollapse navbar show={showBasic}>
             <MDBNavbarNav className="mr-auto mb-2 mb-lg-0 nav-btns">
-              <MDBNavbarItem>
-                <Link className="home-btn" to="/" role={"button"}>
-                  Home
-                </Link>
-              </MDBNavbarItem>
               <MDBNavbarItem>
                 <Link className="about-btn" to="/about" role={"button"}>
                   Our Team

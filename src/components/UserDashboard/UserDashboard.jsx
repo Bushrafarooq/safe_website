@@ -1,11 +1,10 @@
+import { MDBBtn, MDBCol, MDBRow } from 'mdb-react-ui-kit';
 import React from 'react';
-import MyComponent from './MyComponent';
-import ImageGallery from './ImageGallery';
-import './style.css'
-import { MDBBtn, MDBBtnGroup, MDBCol , MDBRow } from 'mdb-react-ui-kit';
-import GoogleMapReact from 'google-map-react';
 import { useNavigate } from 'react-router-dom';
-
+import ImageGallery from './ImageGallery';
+import MyComponent from './MyComponent';
+import pic from './images/pic.png';
+import './style.css';
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 export default function App() {
@@ -14,60 +13,55 @@ export default function App() {
   const navigateToPage = () => {
     navigate('/fakeshutdown'); // Navigates to '/page'
   };
-    const defaultProps = {
-        center: {
-          lat: 10.99835602,
-          lng: 77.01502627
-        },
-        zoom: 11
-      };
+
   return (
-    <div>
-        <MDBRow>
-            <MDBCol className="col-10 col-lg-3 d-flex flex-column align-items-center">
-    <h3> Commands</h3>
-      <MDBBtn className="w-100 custom_border mb-3" style={{backgroundColor:' rgb(96,150,180)'}}>Track</MDBBtn>
-   
-      <MDBBtn className="w-100 custom_border  mb-3" style={{backgroundColor:' rgb(96,150,180)'}}>Intruder</MDBBtn>
+    <div className="container mt-5">
+      <MDBRow>
+        <MDBCol className="col-12 col-lg-4 mb-4 mb-lg-0">
+          <div className="card p-4 shadow bg-light">
+            <h3 className="mb-4">Commands</h3>
+            <MDBBtn className="w-100 mb-3" color='secondary'>
+              Track
+            </MDBBtn>
+            <MDBBtn className="w-100 mb-3" color='secondary'>
+              Intruder
+            </MDBBtn>
+            <MDBBtn className="w-100 mb-3" color='secondary'>
+              Alarm
+            </MDBBtn>
+            <MDBBtn
+              className="w-100 mb-3" color='secondary'
+              onClick={navigateToPage}
+            >
+              Fake Shutdown
+            </MDBBtn>
+          </div>
+        </MDBCol>
 
-     
-      <MDBBtn className="w-100 custom_border mb-3"style={{backgroundColor:' rgb(96,150,180)'}}>Alarm</MDBBtn>
-      
-      <MDBBtn
-            className="w-100 custom_border mb-3"
-            style={{ backgroundColor: ' rgb(96,150,180)' }}
-            onClick={navigateToPage} // Add onClick handler to call navigateToFakeShutdown function
-          >
-            Fake Shutdown
-          </MDBBtn>
-    
-    </MDBCol >
-    <MDBCol className="col-10 col-lg-6 d-flex flex-column align-items-center">
-    <h3>Map</h3>
-    <div className='flex-column d-flex custom_border align-items-center' style={{    height: '70vh', width: '100%',marginRight: '20px'  }}>
-        
-        <div  style={{background:'rgb(96,150,180)'}}>
-    <MyComponent/>
-      </div>
-    </div>
-    </MDBCol>
-    <MDBCol className="col-10 col-lg-3 d-flex flex-column align-items-center">
-    <h3>Location</h3>
-    <div className=' custom_border' style={{ backgroundColor: 'rgb(96,150,180)', color: 'white', display: 'flex', flexDirection: 'column', padding: '20px' }}>
-    <p><b>Name:</b> Bushra Farooq</p>
-    <p><b>Email:</b> 2020cs55@student.uet.edu.pk</p>
-    <p><b>Latitude:</b> 10.99835602</p>
-    <p><b>Longitude:</b> 77.01502627</p>
-    <p><b>Address:</b> 123, ABC Street, XYZ City, 12345</p>
-    <p>Time: 12:00 PM</p>
-</div>
+        <MDBCol className="col-12 col-lg-4 mb-4 mb-lg-0">
+          <div className="card p-4 shadow bg-light">
+            <h3 className="mb-4">Map</h3>
+            <div className="w-100 h-100" color='secondary'>
+              <MyComponent />
+            </div>
+          </div>
+        </MDBCol>
 
-    </MDBCol>
-    <MDBCol>
-      <ImageGallery/>
-    </MDBCol>
-    </MDBRow>
+        <MDBCol sm="15" md="6">
+  <img
+    src={pic}
+    alt="loading..."
+    className="img-fluid rounded"
+  />
+</MDBCol>
+
+      </MDBRow>
+
+      <MDBRow className="mt-5">
+        <MDBCol>
+          <ImageGallery />
+        </MDBCol>
+      </MDBRow>
     </div>
-    
   );
 }

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import React, { useEffect, useState } from 'react';
 
 const containerStyle = {
-  width: '400px',
-  height: '400px'
+  width: '270px',
+  height: '300px'
 };
 
 function MyComponent() {

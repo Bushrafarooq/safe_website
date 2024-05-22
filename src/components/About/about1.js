@@ -1,19 +1,20 @@
 import React from "react";
 import "./about.css";
+import supervisor from "./images/Supervisor.jpeg";
 import team1 from "./images/Team1.jpg";
 import team2 from "./images/Team2.jpg";
 import team3 from "./images/Team3.jpg";
 
 
 import {
-  MDBCol,
-  MDBRow,
+  MDBBtn,
   MDBCard,
   MDBCardBody,
-  MDBCardTitle,
-  MDBCardText,
   MDBCardImage,
-  MDBBtn,
+  MDBCardText,
+  MDBCardTitle,
+  MDBCol,
+  MDBRow,
 } from "mdb-react-ui-kit";
 
 const About1 = () => {
@@ -29,7 +30,24 @@ const About1 = () => {
             <MDBCol className="col-12 col-lg-4">
               <MDBCard className="card-size">
                 <MDBCardImage
-                  src={team1}
+                  src={supervisor}
+                  position="top"
+                  alt="..."
+                />
+                <MDBCardBody>
+                  <MDBCardTitle>Dr. Ayesha Altaf</MDBCardTitle>
+                  <MDBCardText>
+                  Assistant Professor at UET Lahore, working passionately to elevate cybersecurity awareness in Pakistan. With a relentless commitment to fostering digital safety, this enthusiast is on a mission to empower individuals and organizations with the knowledge and tools needed to navigate the ever-evolving landscape of cybersecurity.
+                  </MDBCardText>
+                  <MDBBtn href="https://www.linkedin.com/in/dr-ayesha-altaf-459355260">Follow</MDBBtn>
+                </MDBCardBody>
+              </MDBCard>
+            </MDBCol>
+
+            <MDBCol className="col-12 col-lg-4">
+              <MDBCard className="card-size">
+                <MDBCardImage
+                  src={team2}
                   position="top"
                   alt="..."
                 />
@@ -42,11 +60,12 @@ const About1 = () => {
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
-
+          </MDBRow>
+          <MDBRow center>
             <MDBCol className="col-12 col-lg-4">
               <MDBCard className="card-size">
                 <MDBCardImage
-                  src={team2}
+                  src={team1}
                   position="top"
                   alt="..."
                 />
@@ -63,9 +82,10 @@ const About1 = () => {
             <MDBCol className="col-12 col-lg-4">
               <MDBCard className="card-size">
                 <MDBCardImage
-                  src={team1}
+                  src={team3}
                   position="top"
                   alt="..."
+                
                 />
                 <MDBCardBody>
                   <MDBCardTitle>Esha Tur Razia</MDBCardTitle>
@@ -76,7 +96,6 @@ const About1 = () => {
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
-
 
             <MDBCol className="col-12 col-lg-4">
               <MDBCard className="card-size">
@@ -101,7 +120,6 @@ const About1 = () => {
     </div>
   );
 };
-
 export default About1;
 {
   /* <div class="about-section">
