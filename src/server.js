@@ -77,6 +77,29 @@ sql.connect(config)
       }
     });
 
+
+    app.delete('/data/:userId', async (req, res) => {
+      const userId = req.params.userId;
+    
+      try {
+        // Connect to the database
+        await sql.connect(config);
+    
+        // Delete user query
+        const result = await sql.query`DELETE FROM users WHERE user_id = ${userId}`;
+    
+        if (result.rowsAffected[0] > 0) {
+          res.status(200).send('User deleted successfully');
+        } else {
+          res.status(404).send('User not found');
+        }
+      } catch (err) {
+        console.error('Error deleting user:', err);
+        res.status(500).send('Error deleting user');
+      }
+    });
+
+
     app.post('/login', async (req, res) => {
       const { email, password } = req.body;
     
