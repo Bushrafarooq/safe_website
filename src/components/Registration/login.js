@@ -500,21 +500,20 @@
 
 
 
-import React, { useState } from 'react';
-import './login.css';
-import { Link } from 'react-router-dom';
-import Loginimg from './images/login-bg.png';
-import Navbar from '../Home/Navbar';
-import Footer from '../Home/Footer';
-import http from '../../http';
 import {
-  MDBRow,
+  MDBBtn,
+  MDBCheckbox,
   MDBCol,
   MDBInput,
-  MDBCheckbox,
-  MDBBtn,
+  MDBRow,
 } from 'mdb-react-ui-kit';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import http from '../../http';
+import Footer from '../Home/Footer';
+import Navbar from '../Home/Navbar';
+import Loginimg from './images/login-bg.png';
+import './login.css';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -527,7 +526,7 @@ export default function Login() {
     e.preventDefault();
     try {
       let redirectToDashboard = false;
-  
+
       // Check if the email and password match the admin credentials
       if (login.email === 'admin@gmail.com' && login.password === 'iamadmin123') {
         redirectToDashboard = true;
@@ -541,13 +540,12 @@ export default function Login() {
           alert('Invalid credentials');
         }
       }
-  
+
       if (redirectToDashboard) {
         if (login.email === 'admin@gmail.com') {
-          navigate('/dashboard/:uid');
+          navigate('/dashboard'); // Navigates to the admin dashboard
         } else {
-          console.error('Invalid Credentials');
-          navigate('/udashboard');
+          navigate('/udashboard'); // Navigates to the user dashboard
         }
       }
     } catch (error) {
@@ -555,7 +553,6 @@ export default function Login() {
       alert('Error during login');
     }
   };
-  
 
   const onChange = (e) => {
     setLogin({ ...login, [e.target.name]: e.target.value });
@@ -627,3 +624,4 @@ export default function Login() {
     </div>
   );
 }
+

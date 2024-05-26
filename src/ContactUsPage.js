@@ -1,30 +1,30 @@
-import { MDBCol, MDBRow, MDBTypography } from 'mdb-react-ui-kit';
+import { MDBCol, MDBContainer, MDBIcon, MDBRow, MDBTypography } from 'mdb-react-ui-kit';
 import React from 'react';
-import ContactForm from './components/ContactUs/ContactForm';
 import Cf from './components/ContactUs/Cf';
-import Navbar from './components/Home/Navbar';
 import Footer from './components/Home/Footer';
+import Navbar from './components/Home/Navbar';
 
 function ContactUsPage() {
   return (
     <>
-    <Navbar/>
-    <div className='mb-3'>
-        <MDBTypography className='text-center display-1 pb-3 mb-3 border'>Contact Us</MDBTypography>
-        <h5 className='text-center my-4'>We cant't solve your Problem if you don't tell us about it.</h5>
-        <MDBRow>
-            <MDBCol sm='0' md='4'>
-            </MDBCol>
-            <MDBCol sm='12' md='4'>
-                <Cf className='justify-content-center'/>
-            </MDBCol>
-            <MDBCol sm='0' md='4'>
-            </MDBCol>
+      <Navbar />
+      <MDBContainer className='py-5'>
+        <MDBTypography className='text-center display-1 pb-3 mb-3 border-bottom'>Contact Us</MDBTypography>
+        <h5 className='text-center my-4'>
+          We can't solve your problem if you don't tell us about it.
+        </h5>
+        <MDBRow className='justify-content-center'>
+          <MDBCol md='6'>
+            <div className='d-flex justify-content-center mb-4'>
+              <MDBIcon icon='envelope' size='3x' className='text-primary' />
+            </div>
+            <Cf className='p-4 shadow-5' style={{ backgroundColor: '#f7f7f7', borderRadius: '10px' }} />
+          </MDBCol>
         </MDBRow>
-    </div>
-    <Footer/>
+      </MDBContainer>
+      <Footer />
     </>
-  )
+  );
 }
 
-export default ContactUsPage
+export default ContactUsPage;

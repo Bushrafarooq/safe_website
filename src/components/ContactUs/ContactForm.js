@@ -1,18 +1,13 @@
-import React from 'react';
 import {
-  MDBInput,
-  MDBCheckbox,
   MDBBtn,
+  MDBCheckbox,
+  MDBInput,
   MDBValidation,
   MDBValidationItem
-
 } from 'mdb-react-ui-kit';
+import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
-import { Link, useNavigate } from "react-router-dom";
-import { send } from 'emailjs-com';
-import { useState } from 'react';
-
-const checkFlags = Array.apply(null, Array(3)).map(Boolean.prototype.valueOf, false);
 export default function ContactForm() {
   const [inputs, setInputs] = useState({
     Name: "",
@@ -22,6 +17,7 @@ export default function ContactForm() {
   const navigate = useNavigate();
 
   const sendEmail = (e) => {
+    e.preventDefault();
 
     fetch('/contact-us', {
       method: 'POST',
@@ -40,84 +36,38 @@ export default function ContactForm() {
         // Handle errors
       });
 
-
-
+    navigate('/'); // Redirect to the home page after submission
   }
-
 
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setInputs(values => ({ ...values, [name]: value }))
-    if (value.length > 15) {
-
-      checkFlags[2] = true;
-
-    }
-    else {
-
-      checkFlags[2] = false;
-    }
-
-  }
-  const handleSubmit = (event) => {
-
-    if (checkFlags[0] && checkFlags[1] && checkFlags[2]) {
-      event.preventDefault();
-      console.log(inputs);
-    }
-    else {
-      alert("Invalid Data Enter Please Recheck your data");
-    }
-
+    setInputs(values => ({ ...values, [name]: value }));
   }
 
-  function ValidateEmail(e) {
-
+  const ValidateEmail = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(e.target.value)) {
-      document.getElementById('email_pane').style.display = 'none';
-      checkFlags[1] = true;
-      return true;
-    }
+    const emailPane = document.getElementById('email_pane');
+    const isValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(e.target.value);
 
-    document.getElementById('email_pane').style.display = 'block';
-    document.getElementById('email_pane').innerHTML = "Email is Invalid";
-    checkFlags[1] = false;
-    return false;
+    emailPane.style.display = isValid ? 'none' : 'block';
+    emailPane.innerHTML = isValid ? "" : "Email is Invalid";
+    return isValid;
   }
 
   const validateName = (e) => {
-    console.log(e.target.name);
     setInputs({ ...inputs, [e.target.name]: e.target.value });
-    let flag = false;
-    let Name = e.target.value;
+    const namePane = document.getElementById('name_pane');
+    const isValid = /^[a-zA-Z]+$/.test(e.target.value);
 
-    for (let index = 0; index < Name.length; index++) {
-      if (Name[index] >= '0' && Name[index] <= '9' || Name[index] == ' ') {
-
-        document.getElementById('name_pane').style.display = 'block';
-        document.getElementById('name').style.borderBlockColor = "red";
-        document.getElementById('name_pane').innerHTML = "Name is Invalid";
-        flag = false;
-        break;
-      }
-      else {
-
-        document.getElementById('name_pane').style.display = 'none';
-
-        flag = true;
-      }
-    }
-    checkFlags[0] = flag;
-    return flag;
+    namePane.style.display = isValid ? 'none' : 'block';
+    namePane.innerHTML = isValid ? "" : "Name is Invalid";
+    return isValid;
   }
 
   return (
-
-    <MDBValidation className='row g-3' isValidated>
-
-      <MDBValidationItem feedback='' className='col-md-12'>
+    <MDBValidation className='row g-3' noValidate>
+      <MDBValidationItem feedback='Please provide a valid name.' className='col-md-12'>
         <MDBInput
           value={inputs.Name}
           name='Name'
@@ -127,13 +77,12 @@ export default function ContactForm() {
           label='Name'
           className='my-0'
         />
+        <div id='name_pane' className='text-danger mt-0' style={{ display: "none" }}></div>
       </MDBValidationItem>
-      {/* <p id='name_pane' className='text-danger mt-0' style={{ display: "none" }}></p> */}
-      {/* <MDBInput required id='form4Example1' wrapperClass='mb-4' label='Name' name='Name' value={inputs.Name || ""} onChange={handleChange} /> */}
-      <MDBValidationItem>
-      <MDBValidationItem feedback='' className='col-md-12'>
+
+      <MDBValidationItem feedback='Please provide a valid email.' className='col-md-12'>
         <MDBInput
-          value={inputs.Name}
+          value={inputs.Email}
           name='Email'
           onChange={ValidateEmail}
           id='email'
@@ -141,10 +90,22 @@ export default function ContactForm() {
           label='Email'
           className='my-0'
         />
+        <div id='email_pane' className='text-danger mt-0' style={{ display: "none" }}></div>
       </MDBValidationItem>
+
+      <MDBValidationItem feedback='Please provide a message.' className='col-md-12'>
+        <MDBInput
+          required
+          wrapperClass='mb-4'
+          textarea='true'
+          id='form4Example3'
+          rows={4}
+          label='Message'
+          name='Msg'
+          value={inputs.Msg || ""}
+          onChange={handleChange}
+        />
       </MDBValidationItem>
-      {/* <p id='email_pane' className='text-danger mt-0' style={{ display: "none" }}></p> */}
-      <MDBInput required wrapperClass='mb-4' textarea='true' id='form4Example3' rows={4} label='Message' name='Msg' value={inputs.Msg || ""} onChange={handleChange} />
 
       <MDBCheckbox
         wrapperClass='d-flex justify-content-center mb-4'
@@ -152,14 +113,10 @@ export default function ContactForm() {
         label='Send me a copy of this message'
         defaultChecked
       />
-      <Link to="/" role={"button"}>
-        <MDBBtn type='submit' className='mb-4' block onClick={sendEmail}>
-          Submit
-        </MDBBtn>
-      </Link>
 
+      <MDBBtn type='submit' className='mb-4' block onClick={sendEmail}>
+        Submit
+      </MDBBtn>
     </MDBValidation>
-
-
   );
 }
