@@ -117,7 +117,6 @@ function App() {
           <tr>
             <th>Name</th>
             <th>Contact</th>
-            <th>Package</th>
             <th>Actions</th>
           </tr>
         </MDBTableHead>
@@ -142,11 +141,11 @@ function App() {
                 <p className='fw-normal mb-1'>{user.address}</p>
                 <p className='text-muted mb-0'>{user.phone_number}</p>
               </td>
-              <td>{user.package}</td>
-              <td>
-                <MDBBtn color='danger' rounded size='sm' onClick={() => deleteUser(user.user_id)}>
+              <td><MDBBtn color='danger' rounded size='sm' onClick={() => deleteUser(user.user_id)}>
                   Delete
-                </MDBBtn>
+                </MDBBtn></td>
+              <td>
+                
               </td>
             </tr>
           ))}
