@@ -36,7 +36,7 @@ function App() {
         <Route path="/termsOfUse" element={<TermsOfUsePage />} />
         {/* <Route path="/contactUs" element={<ContactUsPage />} /> */}
         <Route path="/users" element={<Users />} />
-        <Route path="/dashboard/:uid" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/information/:id/:uid" element={<InformationPage/>} />
         <Route path="/udashboard" element={<UDashboard/>} />
         <Route path="/dashboard/:uid/profile/:id" element={<ProfilePage/>} />

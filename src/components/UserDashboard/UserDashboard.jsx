@@ -3,6 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ImageGallery from './ImageGallery';
 import MyComponent from './MyComponent';
+import ImageDisplay from '../Dashboard/ImageDisplay';
 import pic from './images/pic.png';
 import './style.css';
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
@@ -59,7 +60,7 @@ export default function App() {
 
       <MDBRow className="mt-5">
         <MDBCol>
-          <ImageGallery />
+          <ImageDisplay />
         </MDBCol>
       </MDBRow>
     </div>

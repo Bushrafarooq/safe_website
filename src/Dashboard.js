@@ -5,7 +5,7 @@ import DashboardPills from './components/Dashboard/DasboardPills';
 import DashboardFilters from './components/Dashboard/DashboardFilters';
 import { MDBCol, MDBRow } from 'mdb-react-ui-kit';
 import Overview from './components/Dashboard/Overview';
-
+import ImageDisplay from './components/Dashboard/ImageDisplay';
 import Users from './components/Dashboard/Users';
 import ChatListWithButtons from './components/Dashboard/ChatListWithButtons';
 import image from './components/Dashboard/images/Team1.jpg'
@@ -35,6 +35,7 @@ function Dashboard() {
 
           </MDBCol>
         </MDBRow>
+    
 
         
     </div>
