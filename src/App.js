@@ -1,26 +1,19 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
-import HomePage from "./HomePage";
-import SuccessStoriesForm from "./components/SuccessStories/SuccessStoriesForm";
-import Login from "./components/Registration/login";
-import SubscriptionPage from "./SubscriptionPage";
-import PrivacyPolicyPage from "./PrivacyPolicyPage";
-import ContactUsPage from "./ContactUsPage";
-import TermsOfUsePage from "./TermsOfUsePage";
-import Mainpage from "./components/Information/mainpage";
+import { Route, Routes } from "react-router-dom";
 import AboutPage from "./AboutPage";
-import Dashboard from "./Dashboard";
-import ProfilePage from "./ProfilePage";
-import InformationPage from "./InformationPage";
-import UDashboard from "./uDashboard";
 import './App.css';
+import ContactUsPage from "./ContactUsPage";
+import Dashboard from "./Dashboard";
+import HomePage from "./HomePage";
+import InformationPage from "./InformationPage";
+import PrivacyPolicyPage from "./PrivacyPolicyPage";
+import ProfilePage from "./ProfilePage";
+import SubscriptionPage from "./SubscriptionPage";
+import TermsOfUsePage from "./TermsOfUsePage";
 import Users from "./Users";
-import Information from "./components/Information/information";
-import Media from "./components/Information/media";
-import Privatephotos from "./components/Information/privatephotos";
-import Publicphotos from "./components/Information/publicphotos";
-import FakeShutdownScreen from './fakeshutdown'; 
-
+import Login from "./components/Registration/login";
+import FakeShutdownScreen from './fakeshutdown';
+import UDashboard from "./uDashboard";
 
 function App() {
   return (
@@ -38,7 +31,7 @@ function App() {
         <Route path="/subscription" element={<SubscriptionPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/signin" element={<Login />} />
-        <Route path="/contactus" element={<SuccessStoriesForm />} />
+        <Route path="/contactus" element={<ContactUsPage/>} />
         <Route path="/privacyPolicy" element={<PrivacyPolicyPage />} />
         <Route path="/termsOfUse" element={<TermsOfUsePage />} />
         {/* <Route path="/contactUs" element={<ContactUsPage />} /> */}
