@@ -1,5 +1,6 @@
 import {
   MDBBtn,
+  MDBCheckbox,
   MDBInput,
   MDBValidation,
   MDBValidationItem
@@ -11,12 +12,11 @@ export default function ContactForm() {
   const [inputs, setInputs] = useState({
     Name: "",
     Email: "",
-    Phone: "",
     Msg: ""
   });
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const sendEmail = (e) => {
     e.preventDefault();
 
     fetch('/contact-us', {
@@ -28,11 +28,11 @@ export default function ContactForm() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('Data posted successfully:', data);
+        console.log('Data posted successfully to ContactUs table:', data);
         // Optionally, perform any actions based on the response
       })
       .catch((error) => {
-        console.error('Error posting data:', error);
+        console.error('Error posting data to ContactUs table:', error);
         // Handle errors
       });
 
@@ -45,56 +45,76 @@ export default function ContactForm() {
     setInputs(values => ({ ...values, [name]: value }));
   }
 
+  const ValidateEmail = (e) => {
+    setInputs({ ...inputs, [e.target.name]: e.target.value });
+    const emailPane = document.getElementById('email_pane');
+    const isValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(e.target.value);
+
+    emailPane.style.display = isValid ? 'none' : 'block';
+    emailPane.innerHTML = isValid ? "" : "Email is Invalid";
+    return isValid;
+  }
+
+  const validateName = (e) => {
+    setInputs({ ...inputs, [e.target.name]: e.target.value });
+    const namePane = document.getElementById('name_pane');
+    const isValid = /^[a-zA-Z]+$/.test(e.target.value);
+
+    namePane.style.display = isValid ? 'none' : 'block';
+    namePane.innerHTML = isValid ? "" : "Name is Invalid";
+    return isValid;
+  }
+
   return (
-    <MDBValidation className='row g-3' noValidate onSubmit={handleSubmit}>
-      <MDBValidationItem className='col-md-12' feedback='Please provide a valid name.'>
+    <MDBValidation className='row g-3' noValidate>
+      <MDBValidationItem feedback='Please provide a valid name.' className='col-md-12'>
         <MDBInput
           value={inputs.Name}
           name='Name'
-          onChange={handleChange}
+          onChange={validateName}
           id='name'
           required
           label='Name'
+          className='my-0'
         />
+        <div id='name_pane' className='text-danger mt-0' style={{ display: "none" }}></div>
       </MDBValidationItem>
 
-      <MDBValidationItem className='col-md-12' feedback='Please provide a valid email.'>
+      <MDBValidationItem feedback='Please provide a valid email.' className='col-md-12'>
         <MDBInput
           value={inputs.Email}
           name='Email'
-          onChange={handleChange}
+          onChange={ValidateEmail}
           id='email'
           required
           label='Email'
+          className='my-0'
         />
+        <div id='email_pane' className='text-danger mt-0' style={{ display: "none" }}></div>
       </MDBValidationItem>
 
-      <MDBValidationItem className='col-md-12' feedback='Please provide a valid phone number.'>
+      <MDBValidationItem feedback='Please provide a message.' className='col-md-12'>
         <MDBInput
-          value={inputs.Phone}
-          name='Phone'
-          onChange={handleChange}
-          id='phone'
           required
-          label='Phone Number'
-        />
-      </MDBValidationItem>
-
-      <MDBValidationItem className='col-md-12' feedback='Please provide a message.'>
-        <MDBInput
           wrapperClass='mb-4'
           textarea='true'
-          id='message'
+          id='form4Example3'
           rows={4}
           label='Message'
           name='Msg'
-          value={inputs.Msg}
+          value={inputs.Msg || ""}
           onChange={handleChange}
-          required
         />
       </MDBValidationItem>
 
-      <MDBBtn type='submit' className='mb-4' block>
+      <MDBCheckbox
+        wrapperClass='d-flex justify-content-center mb-4'
+        id='form4Example4'
+        label='Send me a copy of this message'
+        defaultChecked
+      />
+
+      <MDBBtn type='submit' className='mb-4' block onClick={sendEmail}>
         Submit
       </MDBBtn>
     </MDBValidation>
